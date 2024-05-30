@@ -1,0 +1,6 @@
+<div [class.completed]="todo.completed">
+    <input type="checkbox" [checked]="todo.completed" (change)="onToggle()" />
+    {{ todo.title }}
+    <button (click)="onDelete()">Delete</button>
+  </div>
+  

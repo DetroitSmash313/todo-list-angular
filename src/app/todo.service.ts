@@ -1,0 +1,35 @@
+import { Injectable } from '@angular/core';
+
+interface Todo {
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TodoService {
+  private todos: Todo[] = [];
+  private nextId: number = 1;
+
+  getTodos(): Todo[] {
+    return this.todos;
+  }
+
+  addTodo(title: string): void {
+    this.todos.push({ id: this.nextId++, title, completed: false });
+  }
+
+  toggleTodoCompletion(id: number): void {
+    const todo = this.todos.find(todo => todo.id === id);
+    if (todo) {
+      todo.completed = !todo.completed;
+    }
+  }
+
+  deleteTodo(id: number): void {
+    this.todos = this.todos.filter(todo => todo.id !== id);
+  }
+}
+
